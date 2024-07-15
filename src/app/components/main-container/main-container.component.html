@@ -1,0 +1,42 @@
+<div class=" flex justify-center bg-blue-50 min-h-[88vh]">
+    <div class=" h-full w-10/12 flex flex-col gap-8 justify-center items-start py-8">
+
+        <div class=" md:absolute right-[8vw] top-[3.3vh] flex gap-5">
+            <button *ngIf="!isHistory" class=" px-6 py-3 font-semibold bg-blue-400 text-white cursor-pointer md:bg-white rounded-full md:text-blue-500 text-xl" (click)="toggleHistoryPage()">History</button>
+            <button *ngIf="isHistory" class=" px-6 py-3 font-semibold cursor-pointer md:bg-white rounded-full text-white bg-blue-400 md:text-blue-500 text-xl" (click)="toggleHistoryPage()">HomePage</button>
+            <button class=" px-6 py-3 font-semibold cursor-pointer md:bg-white bg-blue-400 text-white rounded-full md:text-blue-500 text-xl" (click)="downloadCSV()">Download All Tasks</button>
+        </div>
+
+        <!-- History Page -->
+         <div *ngIf="isHistory" class="w-full h-full">
+            <app-history-page [historyArray]="historyArray"></app-history-page>
+         </div>
+        
+        <div *ngIf="!isHistory" class=" w-full h-full"><app-formdata (addNewTodo)="addTodo($event)"></app-formdata></div>
+         
+        <div *ngIf="todos2.length!==0 && !isHistory">
+            <div class="max-w-sm mx-auto">
+                <label for="countries" class="block mb-2 text-xl font-bold text-gray-900 ">Sort Tasks</label>
+                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [(ngModel)]="sortBy" (ngModelChange)="sortMethods()" >
+                  
+                  <option value="1" selected>Recently Added</option>
+                  <option value="2" >Completed</option>
+                  <option value="3">To-do</option>
+                  <option value="4">In Progress</option>
+                  <option value="5">Priority</option>
+                  
+                </select>
+              </div>
+        </div>
+        
+        <div *ngIf="!isHistory" class=" w-full">
+            <div class=" text-center text-4xl py-5" *ngIf="todos2.length===0">No Tasks Present</div>
+            <div class=" w-full flex flex-col" *ngFor="let tod of todos">
+                <app-single-todo [tod]="tod" (todoDelete)="deleteTodo(tod)" (todoUpdate)="updateTodo($event)"
+                    (todoChangeState)="changeState($event)"></app-single-todo>
+            </div>
+        </div>
+
+    </div>
+</div> 
+

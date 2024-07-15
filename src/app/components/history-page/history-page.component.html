@@ -1,0 +1,36 @@
+<div class="flex flex-col">
+    <div class="-m-1.5 overflow-x-auto">
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="overflow-hidden">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+              <tr>
+                <th scope="col" class="md:px-6 py-3 text-start text-2xl font-medium text-gray-500 uppercase">Name</th>
+                <th scope="col" class="md:px-6 py-3 text-start text-2xl font-medium text-gray-500 uppercase">Description</th>
+                <th scope="col" class="px-6 py-3 text-start text-2xl font-medium text-gray-500 uppercase">Priority</th>
+                <th scope="col" class="px-6 py-3 text-end text-2xl font-medium text-gray-500 uppercase">Status</th>
+                <th scope="col" class="px-6 py-3 text-end text-2xl font-medium text-gray-500 uppercase">Operation</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngIf="historyArray.length===0" class="odd:bg-white even:bg-gray-100 hover:bg-gray-100">
+                <td class="px-6 py-4 whitespace-nowrap text-xl font-medium text-gray-800">NUll</td>
+                <td class="px-6 py-4 whitespace-nowrap text-xl text-gray-800">NUll</td>
+                <td class="px-6 py-4 whitespace-nowrap text-xl text-gray-800">NUll</td>
+                <td class="px-6 py-4 whitespace-nowrap text-xl text-gray-800 text-end">NUll</td>
+                <td class="px-6 py-4 whitespace-nowrap text-end text-xl font-medium">
+                  <button type="button" class="inline-flex items-center gap-x-2 text-xl font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none cursor-text">NUll</button>
+                </td>
+              </tr>
+
+              <tr *ngFor="let history of historyArray" class="odd:bg-white even:bg-gray-100 hover:bg-gray-100">
+                <td class="px-6 py-4 whitespace-nowrap text-xl font-medium text-gray-800">{{ history.title }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-xl text-gray-800">{{ history.desc }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-xl text-gray-800">{{ history.priority }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-xl text-gray-800 text-end">{{ history.status }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-end text-xl font-medium">
+                  <button type="button" class="inline-flex items-center gap-x-2 text-xl font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none cursor-text">{{ history.operation }}</button>
+                </td>
+              </tr>
+  

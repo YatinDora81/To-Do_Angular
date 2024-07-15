@@ -1,0 +1,59 @@
+<div class=" min-w-full flex md:flex-row flex-col  border-2 border-gray-200 bg-blue-100 px-5 py-5 justify-between pr-20 items-center mt-4">
+    
+    <form *ngIf="toUpdate" (ngSubmit)="updateHandler()" class=" md:pl-10" >
+        <div class="flex flex-col w-full mb-2 ">
+            <label class="text-2xl mb-1" for="title">Title</label>
+            <input class="h-12  md:w-[50vh] px-2 border border-gray-300 rounded" id="title" name="title" type="text" [(ngModel)]="ntitle" />
+        </div>
+        <div class="flex flex-col w-full mb-2">
+            <label class="text-2xl mb-1" for="desc">Description</label>
+            <input  class="h-16 w-full px-2 border border-gray-300 rounded" id="desc" name="desc" type="text" [(ngModel)]="ndesc"  />
+        </div>
+        <div class="flex flex-col w-full mb-3">
+            <label class="text-2xl mb-1 ">Priority</label>
+            <div class="flex items-center mb-1">
+                <input class="mr-2" type="radio" id="highh" name="priority" value="1" [(ngModel)]="npriority" />
+                <label class="text-lg" for="highh">High</label>
+            </div>
+            <div class="flex items-center mb-1">
+                <input class="mr-2" type="radio" id="mediumm" name="priority" value="2"  [(ngModel)]="npriority" />
+                <label class="text-lg" for="mediumm">Medium</label>
+            </div>
+            <div class="flex items-center">
+                <input class="mr-2" type="radio" id="loww" name="priority" value="3" [(ngModel)]="npriority" />
+                <label class="text-lg" for="loww">Low</label>
+            </div>
+        </div>
+    </form> 
+    
+    <div *ngIf="!toUpdate" class=" flex flex-col gap-2">
+        <div class=" text-3xl">Title : {{tod.title}}</div>
+        
+
+        
+    
+
+    <div class=" text-xl">Description : {{tod.desc}}</div>
+        <div class="">CreatedAt : {{tod.createdAt.getDate()}}-{{tod.createdAt.getMonth()+1}}-{{tod.createdAt.getFullYear()}} {{" "}}
+            {{tod.createdAt.getHours()}}:{{tod.createdAt.getMinutes()}}:{{tod.createdAt.getSeconds()}}</div>
+        <div>Priority : {{tod.priority === "1" ? 'high' : tod.priority === "2" ? 'medium' : 'low'}}</div>
+    </div>
+    <div class=" flex gap-5 justify-center items-center">
+        <!-- <button class=" px-4 py-2 bg-green-400 rounded-xl" *ngIf="!tod.active" (click)="changeState(tod)">Completed</button>
+        <button class=" px-4 py-2 bg-yellow-300 rounded-xl" *ngIf="tod.active && !toUpdate" (click)="changeState(tod)">Pending</button> -->
+        <button *ngIf="tod.status!=='Completed' && toUpdate===false" class="px-4 md:px-10 py-2 bg-blue-400 rounded-xl" (click)="updateHandler()" >Update</button>
+        <button *ngIf="tod.status!=='Completed'  && toUpdate===true " class=" px-4 md:px-10 py-2 bg-blue-400 rounded-xl" (click)="updateHandler()" >Save</button>
+        <div *ngIf="!toUpdate" class="max-w-sm mx-auto">
+            <label for="countries" class="block mb-2 text-lg font-bold text-gray-900 ">Current Status</label>
+            <select id="countries" class="bg-gray-50 border border-gray-300 text-white text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-100 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" [(ngModel)]="currStatus" (ngModelChange)="changeState(tod)" >
+              
+              <option  value="To-do" >To-Do</option>
+              <option   value="In-Progress">In-Progress</option>
+              <option  value="Completed">Completed</option>
+            </select>
+          </div>
+        
+        <button class=" px-4 md:px-10 py-2 bg-red-400 rounded-xl" (click)="deleteHandler(tod)">Delete</button>
+        
+    </div>
+</div>

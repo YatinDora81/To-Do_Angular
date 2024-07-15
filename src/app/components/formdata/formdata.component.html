@@ -1,0 +1,29 @@
+<div class="w-full  flex flex-col items-center border border-gray-600 py-4 md:px-40 rounded-3xl">
+    <h2 class="md:text-4xl text-xl mb-4">Add New Task</h2>
+    <form (submit)="submitHandler()" class="md:flex flex-col gap-3 justify-center items-start md:w-full px-4">
+        <div class="flex flex-col w-full mb-2">
+            <label class="text-2xl mb-1" for="title">Title</label>
+            <input class="h-12 w-full px-2 border border-gray-300 rounded" id="title" name="title" type="text" [(ngModel)]="title"  />
+        </div>
+        <div class="flex flex-col w-full mb-2">
+            <label class="text-2xl mb-1" for="desc">Description</label>
+            <input [title]="title" class="h-16 w-full px-2 border border-gray-300 rounded" id="desc" name="desc" type="text" [(ngModel)]="desc"  />
+        </div>
+        <div class="flex flex-col w-full mb-3">
+            <label class="text-2xl mb-1 ">Priority</label>
+            <div class="flex items-center mb-1">
+                <input class="mr-2" type="radio" id="high" name="priority" value="1" [(ngModel)]="priority" />
+                <label class="text-lg" for="high">High</label>
+            </div>
+            <div class="flex items-center mb-1">
+                <input class="mr-2" type="radio" id="medium" name="priority" value="2" [(ngModel)]="priority" />
+                <label class="text-lg" for="medium">Medium</label>
+            </div>
+            <div class="flex items-center">
+                <input class="mr-2" type="radio" id="low" name="priority" value="3" [(ngModel)]="priority" />
+                <label class="text-lg" for="low">Low</label>
+            </div>
+        </div>
+        <button class="self-center bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600" type="submit">Add Task</button>
+    </form>
+</div>
